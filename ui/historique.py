@@ -3,6 +3,7 @@ from PyQt6.QtGui import QColor, QCursor, QIntValidator
 from PyQt6.QtCore import Qt
 from logger import LOGGER
 from controllers.client_controller import list_user_transaction, login_customer
+import locale
 
 class HistoriqueWindow(QWidget):
     def __init__(self, parent):
@@ -10,7 +11,8 @@ class HistoriqueWindow(QWidget):
         self.setWindowTitle("Page d'historisque")
         self.setFixedSize(950, 600)
         self.parentWindow = parent
-        
+        locale.setlocale(locale.LC_TIME, "fr_FR")
+
     def init_ui(self):
         self.pagelayout = QVBoxLayout(self)
         

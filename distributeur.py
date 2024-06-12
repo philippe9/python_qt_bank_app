@@ -3,6 +3,7 @@ from controllers.client_controller import *
 from logger import LOGGER
 from prettytable import PrettyTable, MARKDOWN, ORGMODE 
 from pick import pick
+import locale
 
 personnes = []
 get_index_question = "Quel est l'index de la personne ? (Commencez a 0) \n"
@@ -15,6 +16,7 @@ B = "\033[0;34;40m" # Blue
 N = "\033[0m" # Reset
 identifiant = ''
 user = Client()
+locale.setlocale(locale.LC_TIME, "fr_FR")
 def menu():
     options = ['Dépôt', 'Retrait', 'Transfert', 'Historique des operations', 'Solde du comptes','Pour sortir du programme']
     
@@ -105,14 +107,14 @@ def user_historique():
     table.field_names = ["Montant", "Type", "Compte emmeteur","Compte recepteur", "Date de l'operation","Mat operation"]
     for i, item in enumerate(trxs):
         if item.type == 'DEPOT':
-             table.add_row([f"{str(item.montant)} FCFA", G+item.type+N, item.compte_emmeteur_obj.nom, item.compte_recepteur_obj.nom, item.date.strftime('%a %d/%m/%Y , %H:%M:%S'),item.matricule_transaction])
+             table.add_row([f"{str(item.montant)} FCFA", G+item.type+N, item.compte_emmeteur_obj.prenom + ' ' + item.compte_emmeteur_obj.nom, item.compte_recepteur_obj.prenom + ' ' +item.compte_recepteur_obj.nom, item.date.strftime('%A %d/%m/%Y , %H:%M:%S'),item.matricule_transaction])
         if item.type == 'RETRAIT':
-            table.add_row([f"{str(item.montant)} FCFA", R+item.type+N, item.compte_emmeteur_obj.nom, item.compte_recepteur_obj.nom, item.date.strftime('%a %d/%m/%Y , %H:%M:%S'),item.matricule_transaction])
+            table.add_row([f"{str(item.montant)} FCFA", R+item.type+N, item.compte_emmeteur_obj.prenom + ' ' + item.compte_emmeteur_obj.nom, item.compte_recepteur_obj.prenom + ' ' + item.compte_recepteur_obj.nom, item.date.strftime('%A %d/%m/%Y , %H:%M:%S'),item.matricule_transaction])
         if item.type == 'TRANSACTION':
-            if item.compte_recepteur_obj.identifiant == current_user:
-                table.add_row([f"{str(item.montant)} FCFA", G+item.type+N, item.compte_emmeteur_obj.nom, item.compte_recepteur_obj.nom, item.date.strftime('%a %d/%m/%Y , %H:%M:%S'),item.matricule_transaction])
+            if item.compte_recepteur_obj.identifiant == identifiant:
+                table.add_row([f"{str(item.montant)} FCFA", G+item.type+N, item.compte_emmeteur_obj.prenom + ' ' + item.compte_emmeteur_obj.nom, item.compte_recepteur_obj.prenom + ' ' +  item.compte_recepteur_obj.nom, item.date.strftime('%A %d/%m/%Y , %H:%M:%S'),item.matricule_transaction])
             else:
-                table.add_row([f"{str(item.montant)} FCFA", R+item.type+N, item.compte_emmeteur_obj.nom, item.compte_recepteur_obj.nom, item.date.strftime('%a %d/%m/%Y , %H:%M:%S'),item.matricule_transaction])
+                table.add_row([f"{str(item.montant)} FCFA", R+item.type+N, item.compte_emmeteur_obj.prenom + ' ' + item.compte_emmeteur_obj.nom, item.compte_recepteur_obj.prenom + ' ' +  item.compte_recepteur_obj.nom, item.date.strftime('%A %d/%m/%Y , %H:%M:%S'),item.matricule_transaction])
 
     table.set_style(ORGMODE)
     

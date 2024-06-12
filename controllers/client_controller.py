@@ -36,7 +36,7 @@ def retrieve_customer_account(identifiant:str, pin: str, amount: int)->ReturnMod
             etat = ETAT_TRANSACTION['SUCCESS'],
             ))
             if(retrait and transaction):
-                return ReturnModel(True, False, True, False,'','',f"Votre retrait de {amount} FCFA dans votre compte s'est effectue avec success. Votre nouveau solde est de {retrait}")
+                return ReturnModel(True, False, True, False,'','',f"Votre retrait de {amount} FCFA dans votre compte s'est effectue avec success. Votre nouveau solde est de {retrait} FCFA")
         else :
             return ReturnModel(True,False,False, False,'','',"Votre solde est insuffisant pour effectuer la transaction")
     else :
@@ -55,7 +55,7 @@ def deposit_customer_account(identifiant:str, pin: str, amount: int)->ReturnMode
             etat = ETAT_TRANSACTION['SUCCESS'],
         ))
         if(depot and transaction):
-            return ReturnModel(True, True, False, False,'',f"Votre depot de {amount} FCFA dans votre compte s'est effectue avec success. Votre nouveau solde est de {depot}")
+            return ReturnModel(True, True, False, False,'',f"Votre depot de {amount} FCFA dans votre compte s'est effectue avec success. Votre nouveau solde est de {depot} FCFA")
         else:
             return ReturnModel(True, False, False, False,'',"Erreur l'ors de la transaction")
     return ReturnModel(False)
@@ -78,7 +78,7 @@ def do_transaction(identifiant: str, pin: str, amount:int, compte_recepteur:str)
                 etat = ETAT_TRANSACTION['SUCCESS'],
                 ))
                 if(depot and transaction and retrait):
-                    return ReturnModel(True, False, False, True,'','','',f"Votre depot de {amount} FCFA vers le compte {receiver.num_compte} s'est effectue avec success. Votre nouveau solde est de {retrait}")
+                    return ReturnModel(True, False, False, True,'','','',f"Votre depot de {amount} FCFA vers le compte {receiver.num_compte} s'est effectue avec success. Votre nouveau solde est de {retrait} FCFA")
             else:
                 return ReturnModel(True,False,False,False, '','','',"Votre solde est insuffisant pour effectuer la transaction")
         else:
