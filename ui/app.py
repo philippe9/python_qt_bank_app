@@ -18,7 +18,7 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("My App")
         # self.setWindowIcon(QIcon('assets/logo.png'))
         self.setFixedSize(400, 600)
-        self.user_identifiant = 'melo'
+        self.user_identifiant = ''
 
         self.stackedWidget = QStackedLayout(self)
         
@@ -43,7 +43,7 @@ class MainWindow(QMainWindow):
         self.soldeWindow = SoldeWindow(self)
         self.stackedWidget.addWidget(self.soldeWindow)
         
-        self.go_to_historique()
+        self.go_to_login()
         
     def go_to_login(self):
         self.stackedWidget.setCurrentIndex(0)

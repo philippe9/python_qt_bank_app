@@ -18,6 +18,5 @@ if __name__ == "__main__":
     except ImportError:
         pass
     
-    # app.icon
     window = MainWindow()
     app.exec()
