@@ -20,7 +20,7 @@ class LoginWindow(QWidget):
         pagelayout.addWidget(image_label)
 
         title = QLabel()
-        title.setText('Application de gestion du groupe EC2LT')
+        title.setText('Application de gestion de banque EC2LT')
         title.setObjectName("pageTitle")
         title.setWordWrap(True)
         title.setMargin(10)

@@ -15,7 +15,7 @@ class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
         
-        self.setWindowTitle("My App")
+        self.setWindowTitle("Banque EC2LT")
         # self.setWindowIcon(QIcon('assets/logo.png'))
         self.setFixedSize(400, 600)
         self.user_identifiant = ''

@@ -153,5 +153,5 @@ def continue_operation():
         sys.exit()
     
 LOGGER.remove()
-print("Bienvenue dans la banque python! \n")
+print("Bienvenue dans la banque EC2LT! \n")
 initial_auth()
